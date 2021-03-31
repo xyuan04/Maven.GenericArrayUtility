@@ -1,5 +1,6 @@
 package com.zipcodewilmington.arrayutility;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -33,7 +34,13 @@ public class ArrayUtility<Type extends Object> {
                 newArrayList.add(value);
             }
         }
-        return null;
+
+        Type[] newArray = Arrays.copyOf(inputArray, newArrayList.size());
+
+        for(int i = 0; i < newArrayList.size(); i++) {
+            newArray[i] = newArrayList.get(i);
+        }
+        return newArray;
     }
 
     public Type getMostCommonFromMerge(Type[] arrayToMerge) {
@@ -59,6 +66,13 @@ public class ArrayUtility<Type extends Object> {
     }
 
     public Integer getNumberOfOccurrences(Type valueToEvaluate) {
-        return null;
+        Integer count = 0;
+
+        for (Type value: inputArray) {
+            if(value.equals(valueToEvaluate)) {
+                count++;
+            }
+        }
+        return count;
     }
 }
